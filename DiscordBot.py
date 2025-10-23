@@ -23,13 +23,6 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 discord.opus._load_default()
 
 @bot.command()
-async def undeafen(ctx, user_id):
-    for user in ctx.author.guild.members:
-        if user.id == int(user_id):
-            await user.edit(deafen=False)
-            print(f"added role to: {user}") 
-
-@bot.command()
 async def test(ctx, seconds: int = 1):
     def callback(user, data: voice_recv.VoiceData):
         print(f"Recieved a packet from {user}")
@@ -130,9 +123,6 @@ class TranscriptionSink(voice_recv.AudioSink):
                 except Exception as e:
                     print("Transcription error:", e)
  
-@bot.command()
-async def testSwear(ctx):
-    await SwearFound(ctx.channel, ctx.author.id, "shit")
     
 @bot.command()
 async def getDebt(ctx):
@@ -193,5 +183,6 @@ async def Punishment(guild, user_id):
 @bot.event
 async def on_ready():
     print(f"✅ Logged in as {bot.user}")
+
 
 bot.run("No key for you!!!!")
